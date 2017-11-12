@@ -13,9 +13,11 @@ public class DelayedAlert extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setMessage("Are you still f***ing awake???");
+        builder1.setMessage("Are you still awake???");
         builder1.setCancelable(true);
 
+
+        // disables text alarm if "Yes"
         builder1.setPositiveButton(
                 "Yes",
                 new DialogInterface.OnClickListener() {
@@ -25,6 +27,7 @@ public class DelayedAlert extends AppCompatActivity {
                     }
                 });
 
+        // text alarm activates if "No" or if "Yes" is not selected before the alarm ends
         builder1.setNegativeButton(
                 "No",
                 new DialogInterface.OnClickListener() {

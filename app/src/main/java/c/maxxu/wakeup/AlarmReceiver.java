@@ -18,8 +18,9 @@ public class AlarmReceiver extends BroadcastReceiver
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        // first PendingIntent
         if (MainActivity.alarm == 1) {
-            Toast.makeText(context, "11111111", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Time to wake the h*** up!", Toast.LENGTH_LONG).show();
 
             Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
             if (alarmUri == null) {
@@ -30,16 +31,19 @@ public class AlarmReceiver extends BroadcastReceiver
             MainActivity.setRingtone();
             MainActivity.alarm++;
         }
+
+        // second PendingIntent
         else if (MainActivity.alarm == 2) {
-            Toast.makeText(context, "222222", Toast.LENGTH_LONG).show();
+            // sends out alert dialog to disable text alarm
             context.startActivity(new Intent(context, DelayedAlert.class));
             MainActivity.alarm++;
         }
+
+        // third PendingIntent
         else {
-            Toast.makeText(context, "333333", Toast.LENGTH_LONG).show();
+            // initiates text messages
             context.startActivity(new Intent(context, TextAlert.class));
             MainActivity.alarm = 1;
         }
-
     }
 }

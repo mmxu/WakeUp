@@ -24,36 +24,22 @@ public class TextAlert extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_alert);
-        // Here, thisActivity is the current activity
+
+        // handles permissions to send SMS messages
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.SEND_SMS)
                 != PackageManager.PERMISSION_GRANTED) {
-
-            // Should we show an explanation?
-            // if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-            // Manifest.permission.SEND_SMS)) {
-
-            // Show an explanation to the user *asynchronously* -- don't block
-            // this thread waiting for the user's response! After the user
-            // sees the explanation, try again to request the permission.
-
-            // else {
-
-            // No explanation needed, we can request the permission.
-
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.SEND_SMS},
                     1);
-
-            // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-            // app-defined int constant. The callback method gets the
-            // result of the request.
-            // }
         }
 
+        // sets up UI
         mobileno=(EditText)findViewById(R.id.editText1);
         message=(EditText)findViewById(R.id.editText2);
         sendsms=(Button)findViewById(R.id.button1);
+
+        // sends message
         sendsms.setOnClickListener(new OnClickListener() {
 
             @Override
